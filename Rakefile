@@ -5,8 +5,11 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "facebook"
-    gem.summary = %Q{Minimalist gem implemeting the Facebook API}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Minimalist gem implementing the Facebook API}
+    gem.description = %Q{
+      This gem is a minimalist implementation of the Facebook API (http://wiki.developers.facebook.com/index.php/API)
+      Currently, it only supports API calls under the `users` namespace (eg: `users.getInfo`, `users.getLoggedInUser`, etc.)
+    }
     gem.email = "jurisgalang@gmail.com"
     gem.homepage = "http://github.com/jurisgalang/facebook"
     gem.authors = ["Juris Galang"]
