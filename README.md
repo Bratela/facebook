@@ -29,15 +29,19 @@ redirect:
 
     session[:current_user]           = user
     cookies.permanent[:current_user] = user.id
-    
-The object `user` from the preceding example will have the properties as 
-described in the [documentation](http://developers.facebook.com/docs/reference/api/user).
 
 Note that the `:redirect_uri` *is* required to be passed along with the 
 `:authorization_code` as described in the section for [Authenticating Users in a Web Application](http://developers.facebook.com/docs/authentication/#authenticating-users-in-a-web-application)
 otherwise it will be unable to request a valid access token (and subsequent 
 requests will fail)
+    
+The object `user` from the preceding example will have the properties as 
+described in the [documentation](http://developers.facebook.com/docs/reference/api/user).
 
+Properties that require extended permission will raise `Facebook::ExtendPermissionRequiredException`
+if it was not included in the scope when the authorization request was made. 
+Clients should redirect to request additional permission when this exception is
+raised.
 
 Contributing to facebook
 ------------------------

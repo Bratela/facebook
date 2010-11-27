@@ -9,34 +9,34 @@ module Facebook
     # the property is not available instead of a method missing - this way 
     # its easy to determine if additional permission request is required...
     #
-    # attr_reader :id	is defined in Facebook::GraphObject
+    # property :id	is defined in Facebook::GraphObject
     #
-    attr_reader :first_name	
-    attr_reader :last_name	
-    attr_reader :name	
-    attr_reader :link	
-    attr_reader :about	
-    attr_reader :birthday	
-    attr_reader :work	
-    attr_reader :education	
-    attr_reader :email	
-    attr_reader :website	
-    attr_reader :hometown	
-    attr_reader :location	
-    attr_reader :bio	
-    attr_reader :quotes	
-    attr_reader :gender	
-    attr_reader :interested_in	
-    attr_reader :meeting_for	
-    attr_reader :relationship_status	
-    attr_reader :religion	
-    attr_reader :political	
-    attr_reader :verified	
-    attr_reader :significant_other	
-    attr_reader :timezone	
-    attr_reader :third_party_id	
-    attr_reader :last_updated	
-    attr_reader :locale
+    property :first_name	
+    property :last_name	
+    property :name	
+    property :link	
+    property :about	
+    property :birthday	
+    property :work	
+    property :education	
+    property :email	
+    property :website	
+    property :hometown	
+    property :location	
+    property :bio	
+    property :quotes	
+    property :gender	
+    property :interested_in	
+    property :meeting_for	
+    property :relationship_status	
+    property :religion	
+    property :political	
+    property :verified	
+    property :significant_other	
+    property :timezone	
+    property :third_party_id	
+    property :last_updated	
+    property :locale
 
     def initialize options = { }
       @appid     = options[:client_id]
@@ -60,7 +60,7 @@ module Facebook
       options = { :access_token => access_token || @access_token }
       res     = request "/me", options
       profile = JSON.parse(res)
-      profile.each{ |k, v| instance_variable_set :"@#{k}", v }
+      profile.each{ |k, v| self.class.property :"#{k}", v }
     end
   end
 end

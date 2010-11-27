@@ -1,8 +1,19 @@
 module Facebook
+  class ExtendPermissionRequiredException < Exception; end
+  
   class GraphObject
     attr_reader :access_token
     attr_reader :id
-    
+
+    class << self
+      def property name, value = :extended_permission_required
+        define_method name 
+          raise ExtendPermissionRequiredException  if value == :extended_permission_required
+          value
+        end
+      end
+    end
+
     private
     def request path, params = { }
       uri            = URI.parse "#{API_BASE_URL}#{path}?#{params.to_params}"
