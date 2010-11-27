@@ -31,7 +31,7 @@ redirect:
     cookies.permanent[:current_user] = user.id
     
 Note that the `:redirect_uri` *is* passed along with the `:authorization_code`
-as described in the section for [Authentication Users in a Web Application](http://developers.facebook.com/docs/authentication/#authenticating-users-in-a-web-application)
+as described in the section for [Authenticating Users in a Web Application](http://developers.facebook.com/docs/authentication/#authenticating-users-in-a-web-application)
 otherwise it will be unable to request a valid access token (and subsequent 
 requests will fail)
 
