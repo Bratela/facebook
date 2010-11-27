@@ -7,7 +7,7 @@ module Facebook
 
     class << self
       def property name, value = :extended_permission_required
-        define_method name 
+        define_method name do
           raise ExtendPermissionRequiredException  if value == :extended_permission_required
           value
         end
