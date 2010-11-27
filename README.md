@@ -30,10 +30,14 @@ redirect:
     session[:current_user]           = user
     cookies.permanent[:current_user] = user.id
     
-Note that the `:redirect_uri` *is* passed along with the `:authorization_code`
-as described in the section for [Authenticating Users in a Web Application](http://developers.facebook.com/docs/authentication/#authenticating-users-in-a-web-application)
+The object `user` from the preceding example will have the properties as 
+described in the [documentation](http://developers.facebook.com/docs/reference/api/user).
+
+Note that the `:redirect_uri` *is* required to be passed along with the 
+`:authorization_code` as described in the section for [Authenticating Users in a Web Application](http://developers.facebook.com/docs/authentication/#authenticating-users-in-a-web-application)
 otherwise it will be unable to request a valid access token (and subsequent 
 requests will fail)
+
 
 Contributing to facebook
 ------------------------
