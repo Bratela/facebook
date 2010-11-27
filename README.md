@@ -15,8 +15,9 @@ Redirect the user to the Facebook authentication/authorization page:
     }
     redirect_to Facebook::Authorization::URI(options).to_s
 
-Get a Facebook User object after receiving and authorization code from a
-Facebook authentication redirect:
+Get a [Facebook User](http://developers.facebook.com/docs/reference/api/user) 
+object after receiving and authorization code from a Facebook authentication 
+redirect:
 
     options = { 
       :client_id          => FACEBOOK_APP_ID, 
