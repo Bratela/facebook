@@ -1,5 +1,39 @@
 Ruby bindings for the Facebook Graph API
 
+Basics
+------
+All of the examples unless otherwise specified are within the context of a 
+Rails application.
+
+Redirect the user to the Facebook authentication/authorization page:
+
+    options = {
+      :client_id    => FACEBOOK_APP_ID, 
+      :redirect_uri => oauth_redirect_url,
+      :scope        => [ :offline_access, :user_about_me ], # optional scope
+      :display      => :popup                               # optional
+    }
+    redirect_to Facebook::Authorization::URI(options).to_s
+
+Get a Facebook User object after receiving and authorization code from a
+Facebook authentication redirect:
+
+    options = { 
+      :client_id          => FACEBOOK_APP_ID, 
+      :client_secret      => FACEBOOK_APP_SECRET, 
+      :redirect_uri       => oauth_redirect_url,
+      :authorization_code => params[:code] 
+    }
+    user = Facebook::User.new options
+
+    session[:current_user]           = user
+    cookies.permanent[:current_user] = user.id
+    
+Note that the `:redirect_uri` *is* passed along with the `:authorization_code`
+as described in the section for [Authentication Users in a Web Application](http://developers.facebook.com/docs/authentication/#authenticating-users-in-a-web-application)
+otherwise it will be unable to request a valid access token (and subsequent 
+requests will fail)
+
 Contributing to facebook
 ------------------------
  
