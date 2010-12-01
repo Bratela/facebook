@@ -14,7 +14,7 @@ Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "facebook"
   gem.homepage = "http://github.com/jurisgalang/facebook"
-  gem.license = "MIT"
+  gem.license = ["MIT", "GPL"]
   gem.summary = %Q{facebook graph api bindings}
   gem.description = %Q{TODO: longer description of your gem}
   gem.email = "jurisgalang@gmail.com"

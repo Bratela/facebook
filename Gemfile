@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "named-parameters", ">= 0.0.12"
+gem "named-parameters", ">= 0.0.14"
 gem "json", ">= 1.4.6"
 
 group :development do

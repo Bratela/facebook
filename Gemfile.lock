@@ -8,7 +8,7 @@ GEM
       git (>= 1.2.5)
       rake
     json (1.4.6)
-    named-parameters (0.0.12)
+    named-parameters (0.0.14)
     rake (0.8.7)
     rcov (0.9.9)
     rspec (2.1.0)
@@ -28,7 +28,7 @@ DEPENDENCIES
   bundler (~> 1.0.0)
   jeweler (~> 1.5.1)
   json (>= 1.4.6)
-  named-parameters (>= 0.0.12)
+  named-parameters (>= 0.0.14)
   rcov
   rspec (~> 2.1.0)
   yard (~> 0.6.0)
