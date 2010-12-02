@@ -39,10 +39,11 @@ module Facebook
     property :locale
 
     def initialize options = { }
-      @appid     = options[:client_id]
-      @appsecret = options[:client_secret]
+      @appid        = options[:client_id]
+      @appsecret    = options[:client_secret]
+      @access_token = options[:access_token]
       request_access_token(options) if options[:authorization_code]
-      request_profile options[:access_token]
+      request_profile @access_token
     end
     
     private
@@ -60,7 +61,7 @@ module Facebook
       options = { :access_token => access_token || @access_token }
       res     = request "/me", options
       profile = JSON.parse(res)
-      profile.each{ |k, v| self.class.property :"#{k}", v }
+      profile.each{ |k, v| instance_variable_set :"@#{k}", v }
     end
   end
 end

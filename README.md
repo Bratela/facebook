@@ -38,7 +38,7 @@ requests will fail)
 The object `user` from the preceding example will have the properties as 
 described in the [documentation](http://developers.facebook.com/docs/reference/api/user).
 
-Properties that require extended permission will raise `Facebook::ExtendPermissionRequiredException`
+Properties that require extended permission will raise `Facebook::PermissionRequiredException`
 if it was not included in the scope when the authorization request was made. 
 Clients should redirect to request additional permission when this exception is
 raised.

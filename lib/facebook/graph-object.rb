@@ -1,19 +1,23 @@
 module Facebook
-  class ExtendPermissionRequiredException < Exception; end
+  class PermissionRequiredException < Exception; end
   
   class GraphObject
-    attr_reader :access_token
-    attr_reader :id
-
     class << self
-      def property name, value = :extended_permission_required
+      def property name
         define_method name do
-          raise ExtendPermissionRequiredException  if value == :extended_permission_required
-          value
+          instance_variable_defined?(:"@#{name}") ? \
+            instance_variable_get(:"@#{name}") : \
+            :permission_required
+          #raise PermissionRequiredException, "Permission required to read property: #{name}" \
+          #  unless instance_variable_defined? :"@#{name}"
+          #instance_variable_get :"@#{name}"
         end
       end
     end
 
+    attr_reader :access_token
+    property :id
+    
     private
     def request path, params = { }
       uri            = URI.parse "#{API_BASE_URL}#{path}?#{params.to_params}"
