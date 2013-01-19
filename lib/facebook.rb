@@ -1,13 +1,29 @@
-require 'rubygems'
-require 'net/http'
-require 'net/https'
-require 'uri'
+require 'facebook/client'
+require 'facebook/configurable'
 
-require 'named-parameters'
-require 'json'
+module Facebook
+  class << self
+    include Facebook::Configurable
 
+    # Delegate to a Facebook::Client
+    #
+    # @return [Facebook::Client]
+    def client
+      @client = Facebook::Client.new(options) unless defined?(@client) && @client.cache_key == options.hash
+      @client
+    end
 
-require 'facebook/base'
-require 'facebook/graph-object'
-require 'facebook/authorization'
-require 'facebook/user'
+    def respond_to_missing?(method_name, include_private=false); client.respond_to?(method_name, include_private); end if RUBY_VERSION >= "1.9"
+    def respond_to?(method_name, include_private=false); client.respond_to?(method_name, include_private) || super; end if RUBY_VERSION < "1.9"
+
+  private
+
+    def method_missing(method_name, *args, &block)
+      return super unless client.respond_to?(method_name)
+      client.send(method_name, *args, &block)
+    end
+
+  end
+end
+
+Facebook.setup
